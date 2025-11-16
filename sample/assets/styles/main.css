@@ -1,0 +1,1908 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* البداية: أي صفحة عندها fade-in تبدأ شفافة */
+body.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* الخروج */
+body.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 240px;
+    right: 0;
+    height: 70px;
+    background-color: #fff;
+    display: flex; /* نستخدم Flex لترتيب العنوان وزر الخروج أفقياً */
+    align-items: center; /* نخليه يتوسط الشي عموديا*/
+    justify-content: space-between; /*مساحة بين الوغ اوت وكلمة الداشبورد */
+    padding: 0 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 100; /*يضمن لنا ان الهيدر ثابت ومابيتحرك حتى لو عملنا سكرولنغ والبراوزر مفنوح بشكل صغير 
+    العناصر البقية مابتجي فوق الهيدر واحنا نعمل سكرولنغ تشبه فكرة فريز رو في اكسل*/
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+}
+
+.header-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+.logout-btn {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #f8f9fa;
+}
+
+/* Sidebar */
+/* Sidebar - Enhanced */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 240px;
+    background: linear-gradient(180deg, #1a2332 0%, #2c3e50 100%);
+    color: #fff;
+    overflow-y: auto;
+    z-index: 200;
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-nav {
+    padding: 20px 0;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-item,
+.menu-item {
+    margin-bottom: 4px;
+    padding: 0 10px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(180deg, #3498db 0%, #2ecc71 100%);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+    background: rgba(52, 152, 219, 0.15);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.nav-link:hover::before {
+    transform: scaleY(1);
+}
+
+.nav-link.active {
+    background: rgba(47, 70, 94, 0.6); /* خلفية داكنة */
+    color: #fff;
+    padding-left: 12px;
+    position: relative;
+}
+
+/* الخط الجانبي الملون بـ gradient */
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(180deg, #3498db 0%, #2ecc71 100%);
+    display: block !important;
+    transform: scaleY(1);
+}
+
+.nav-link.active:hover {
+    background: rgba(30, 50, 70, 0.75);
+    transform: translateX(0);
+}
+
+.nav-icon,
+.material-symbols-outlined {
+    margin-right: 12px;
+    font-size: 22px;
+    width: 22px;
+    text-align: center;
+}
+
+.nav-label {
+    font-size: 14px;
+    font-weight: 500;
+}
+/* Main content */
+.main-content {
+    /*
+        تفسير هذا السطرين حق المرجن
+        حجز مساحات مكان السايدبار والهيدر 
+لأنهما ثابتان (fixed) — العناصر الثابتة
+ لا تشغل مساحة في التخطيط العادي،
+ لذلك نترك فجوة يدوياً.
+    */
+    margin-left: 240px;
+    margin-top: 80px;
+    padding: 30px;
+    flex: 1; /* يأخذ باقي عرض الصفحة المتاح */
+}
+
+
+
+/* Dashboard cards */
+
+/* Dashboard cards - التخطيط المحسّن */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: 450px 1fr; /* عمود ثابت للدونات، والباقي للبار */
+    gap: 24px;
+    margin-bottom: 40px;
+    width: 100%;
+    align-items: start; /* محاذاة من الأعلى */
+}
+
+
+/* للشاشات المتوسطة */
+@media (max-width: 1200px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr; /* عمود واحد */
+        gap: 20px;
+    }
+    
+    .card:first-child,
+    .card:last-child {
+        min-height: 350px;
+        max-height: none;
+    }
+    
+    #itemsStatusChart {
+        max-width: 320px !important;
+        max-height: 320px !important;
+    }
+    
+    #employeesChart {
+        height: 300px !important;
+    }
+}
+
+/* Recent transactions section */
+.recent-transactions {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #2c3e50);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 24px;
+}
+
+
+/* Transactions table - Enhanced */
+.transactions-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: none;
+}
+
+.transactions-table th {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    padding: 15px;
+    border: none;
+    border-bottom: 2px solid #3498db; /* خط سفلي خفيف */
+}
+
+.transactions-table td {
+    padding: 16px 20px;
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    color: #495057;
+    font-size: 14px;
+    text-align: left;
+}
+
+
+.transactions-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+
+.transactions-table tbody tr:last-child td {
+    border-bottom: none; /*  االغاء الخط سفلي خفيف لنتائج انظف*/
+}
+
+
+.btn-edit, .btn-delete {
+    background-color: #5a6c7d;
+    color: white;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    width: 80px;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    background-color: #4a5a6b;
+}
+
+/*departments*/
+
+/* تعديل: قسم إضافة القسم الجديد */
+.add-department-section {
+    flex: 0 0 400px; /* عرض ثابت لقسم الإضافة */
+}
+
+
+.add-department-form {
+    background-color: #fff;
+    border-radius: 12px; /* زوايا أكثر نعومة */
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* ظل أكثر نعومة */
+    border: 1px solid #e9ecef;
+    width: 60%;           /* خلي العرض 60% من الشاشة */
+    max-width: 600px;     /* أقصى عرض 600px */
+}
+
+.form-header {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #5a6c7d; /* لون مطابق للأزرار */
+    box-shadow: 0 0 0 3px rgba(90, 108, 125, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #adb5bd;
+    font-style: italic;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-add, .btn-cancel {
+    flex: 1; /* يأخذان نفس العرض */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-add {
+    background-color: #5a6c7d; /* لون مطابق للتصميم */
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #4a5a6b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 108, 125, 0.2);
+}
+
+.btn-cancel {
+    background-color: #5a6c7d;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #4a5a6b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 108, 125, 0.2);
+}
+
+
+/* قسم عرض الأقسام */
+.departments-list-section {
+    margin-top: 40px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+     width: 200px; /*  */
+    min-width: 250px; /* أقل عرض ممكن */
+}
+
+.search-input:focus {
+    border-color: #5a6c7d;
+    box-shadow: 0 0 0 3px rgba(90,108,125,0.1);
+}
+
+.btn-show {
+    background-color: #5a6c7d;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-show:hover {
+    background-color: #4a5a6b;
+}
+
+/*dropdown styles*/
+
+
+  /* الحاوية */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* زر النقاط */
+.dropdown-btn {
+  background-color: transparent; /* 👈 شفاف */
+  width: 32px;
+  height: 32px;
+  border: none;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 22px;
+  text-align: center;
+}
+
+
+
+/* القائمة */
+.dropdown-menu {
+  opacity: 0;
+  transform: translateY(-5px);
+  visibility: hidden;
+  position: absolute;
+  right: 0;
+  top: 40px;
+  background: #fff;
+  border-radius: 8px;
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  list-style: none;
+  padding: 6px 0;
+  margin: 0;
+  z-index: 10;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* تظهر القائمة عند وجود كلاس open */
+.dropdown.open .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+    transition-duration: 0.2s; /* ⬅️ الظهور أسرع */
+
+}
+
+/* عناصر القائمة */
+.dropdown-menu li {
+  width: 100%;
+}
+
+.dropdown-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #374151;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f3f4f6;
+  color: #1d4ed8; /* أزرق جميل */
+  border-radius: 6px;
+}
+
+
+/* حركة بسيطة */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Modal styles */
+.modal {
+  display: none; /* مخفي افتراضياً */
+  position: fixed;
+  z-index: 200; /* فوق كل العناصر */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* لو المحتوى طويل */
+  background-color: rgba(0,0,0,0.5); /* خلفية شفافة */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #000;
+}
+
+
+.select-wrapper select {
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: 2px solid #e9ecef;
+    background: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    min-width: 200px; /* أقل عرض ممكن */
+    min-height: 35px;
+}
+
+.select-wrapper select:focus {
+    border-color: #5a6c7d;
+    box-shadow: 0 0 0 3px rgba(90,108,125,0.1);
+    outline: none;
+    
+}
+
+.error-message {
+    color: red;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    display: block;
+    opacity: 0;                     /* البداية مخفية */
+    transition: opacity 0.3s ease;  /* يظهر ويختفي بسلاسة */
+    height: 0;                       /* يمنع المساحة الفارغة عند الإخفاء */
+}
+
+.error-message.show {
+    opacity: 1;                      /* تظهر عند الخطأ */
+    height: auto;                     /* مساحة الرسالة */
+}
+
+.input-error {
+    border: 2px solid red;                  
+    background-color: #ffe6e6;
+    transition: border-color 0.3s, background-color 0.3s; 
+}
+
+.form-group input.input-error:focus {
+    border-color: red ;
+    box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+}
+
+
+/* Toast Notification Styles */
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    font-size: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: opacity 0.3s, visibility 0.3s;
+    opacity: 0;
+}
+
+.toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.toast.success {
+    background-color: #4caf50;
+}
+
+.toast.error {
+    background-color: #f44336;
+}
+
+
+.stats-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--card-color-1), var(--card-color-2));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.stat-card.blue {
+    --card-color-1: #3498db;
+    --card-color-2: #2980b9;
+}
+
+.stat-card.green {
+    --card-color-1: #2ecc71;
+    --card-color-2: #27ae60;
+}
+
+.stat-card.orange {
+    --card-color-1: #e67e22;
+    --card-color-2: #d35400;
+}
+
+.stat-card.purple {
+    --card-color-1: #9b59b6;
+    --card-color-2: #8e44ad;
+}
+
+.stat-card .card-icon {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.stat-card .card-info {
+    flex: 1;
+}
+
+.stat-card .card-title {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.stat-card .card-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1;
+}
+
+/* Detailed Cards Section */
+.detailed-cards-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.detail-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.detail-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.detail-icon.green-gradient {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.detail-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background 0.2s;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item:hover {
+    background: #f8f9fa;
+    margin: 0 -14px;
+    padding: 14px 14px;
+    border-radius: 8px;
+}
+
+.item-name {
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.item-value {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.item-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge-standby {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.badge-maintenance {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.badge-out-of-service {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* للشاشات الصغيرة نخلي العنوان والقائمة تحت بعض */
+@media (max-width: 600px) {
+    .title-row {
+        flex-direction: column; /* يصيروا تحت بعض */
+        align-items: flex-start; /* يصيروا بمحاذاة اليسار */
+        gap: 10px; /* مسافة بسيطة بينهم */
+        width: 100%;
+    }
+
+    .select-wrapper select {
+        width: 100%; /* خلي القائمة تاخذ عرض الشاشة */
+    }
+}
+
+/* ====================================
+   إضافات Responsive إضافية
+   ==================================== */
+
+/* للأجهزة اللوحية (Tablets) */
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 20px;
+    }
+    
+    .header-title {
+        font-size: 20px;
+    }
+    
+    .add-department-form {
+        width: 80%;
+        max-width: none;
+    }
+    
+    .stats-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .detailed-cards-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* للشاشات الصغيرة (Mobile Landscape) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 70px;
+        transition: width 0.3s ease;
+    }
+    
+    .sidebar .nav-label {
+        display: none;
+    }
+    
+    .sidebar .nav-icon {
+        margin-right: 0;
+    }
+    
+    .header {
+        left: 70px;
+        padding: 0 15px;
+        height: 60px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .header-title {
+        font-size: 18px;
+    }
+    
+    .logout-btn {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+    
+    .main-content {
+        margin-left: 70px;
+        margin-top: 70px;
+        padding: 15px;
+    }
+    
+    .dashboard-cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .add-department-form {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .btn-add, .btn-cancel {
+        width: 100%;
+    }
+    
+    .search-container {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .search-input {
+        width: 100%;
+        min-width: 100%;
+    }
+    
+    .btn-show {
+        width: 100%;
+    }
+    
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .transactions-table {
+        font-size: 13px;
+    }
+    
+    .transactions-table th,
+    .transactions-table td {
+        padding: 12px 10px;
+    }
+    
+    .btn-edit, .btn-delete {
+        padding: 8px 12px;
+        font-size: 13px;
+        width: 70px;
+    }
+    
+    .stats-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-card .card-icon {
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+        font-size: 28px;
+    }
+    
+    .stat-card .card-value {
+        font-size: 32px;
+    }
+    
+    .detailed-cards-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-card {
+        padding: 20px;
+    }
+}
+
+/* للشاشات الصغيرة جداً (Mobile Portrait) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .sidebar {
+        width: 60px;
+        transition: width 0.3s ease;
+    }
+    
+    .header {
+        left: 60px;
+        padding: 0 10px;
+        height: 55px;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .header-title {
+        font-size: 16px;
+    }
+    
+    .logout-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+    
+    .main-content {
+        margin-left: 60px;
+        margin-top: 65px;
+        padding: 10px;
+    }
+    
+    .card {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .section-title {
+        font-size: 18px;
+    }
+    
+    .add-department-form {
+        padding: 15px;
+    }
+    
+    .form-header {
+        font-size: 16px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    .form-group input {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .btn-add, .btn-cancel {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+    
+    .recent-transactions {
+        padding: 15px;
+        border-radius: 8px;
+    }
+    
+    .transactions-table {
+        font-size: 12px;
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .transactions-table thead {
+        display: none;
+    }
+    
+    .transactions-table tbody {
+        display: block;
+    }
+    
+    .transactions-table tr {
+        display: block;
+        margin-bottom: 15px;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 10px;
+    }
+    
+    .transactions-table td {
+        display: block;
+        text-align: right;
+        padding: 8px 0;
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    
+    .transactions-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-right: 10px;
+        text-align: left;
+        font-weight: 600;
+        color: #6c757d;
+    }
+    
+    .btn-edit, .btn-delete {
+        width: 100%;
+        margin-top: 5px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .stat-card .card-icon {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        font-size: 24px;
+    }
+    
+    .stat-card .card-value {
+        font-size: 28px;
+    }
+    
+    .stat-card .card-title {
+        font-size: 12px;
+    }
+    
+    .detail-card {
+        padding: 15px;
+    }
+    
+    .detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .detail-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 20px;
+    }
+    
+    .detail-title {
+        font-size: 16px;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+        padding: 10px 0;
+    }
+    
+    .item-name, .item-value {
+        font-size: 13px;
+    }
+    
+    .dropdown-menu {
+        min-width: 130px;
+    }
+    
+    .dropdown-menu a {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+    
+    .modal-content {
+        margin: 20% auto;
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .toast {
+        min-width: 200px;
+        font-size: 14px;
+        padding: 12px;
+        bottom: 20px;
+    }
+    
+    .select-wrapper select {
+        min-width: 100%;
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+}
+
+/* للشاشات الكبيرة جداً */
+@media (min-width: 1920px) {
+    .main-content {
+        max-width: 1800px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 270px;
+    }
+    
+    .stats-cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .detailed-cards-section {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* ====================================
+   للشاشات النحيفة جداً (iPhone SE, Galaxy Fold, إلخ)
+   ==================================== */
+
+/* للشاشات بعرض 360px وأقل */
+@media (max-width: 360px) {
+    body {
+        font-size: 13px;
+    }
+    
+    .sidebar {
+        width: 50px;
+    }
+    
+    .sidebar .nav-link {
+        padding: 12px 8px;
+        justify-content: center;
+    }
+    
+    .sidebar .nav-icon {
+        font-size: 20px;
+    }
+    
+    .header {
+        left: 50px;
+        padding: 0 8px;
+        height: 50px;
+    }
+    
+    .header-title {
+        font-size: 14px;
+    }
+    
+    .logout-btn {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+    
+    .main-content {
+        margin-left: 50px;
+        margin-top: 60px;
+        padding: 8px;
+        width: calc(100% - 50px); /* تأكد من عدم تجاوز العرض */
+        overflow-x: hidden; /* منع السكرول الأفقي */
+    }
+    
+    /* تحسين الكروت */
+    .card {
+        padding: 10px;
+        border-radius: 8px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .dashboard-cards {
+        gap: 10px;
+        width: 100%;
+    }
+    
+    /* تحسين Canvas للرسوم البيانية */
+    .card canvas {
+        max-height: 200px !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+    
+    #itemsStatusChart {
+        max-width: 180px !important;
+        max-height: 180px !important;
+    }
+    
+    #employeesChart {
+        height: 180px !important;
+    }
+    
+    .section-title {
+        font-size: 15px;
+        margin-bottom: 12px;
+    }
+    
+    /* تحسين كروت الإحصائيات */
+    .stats-cards-grid {
+        gap: 10px;
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        padding: 10px;
+        gap: 10px;
+        flex-direction: row; /* نخليهم جنب بعض بدل تحت بعض */
+        text-align: left;
+    }
+    
+    .stat-card .card-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        font-size: 20px;
+        border-radius: 10px;
+    }
+    
+    .stat-card .card-value {
+        font-size: 20px;
+    }
+    
+    .stat-card .card-title {
+        font-size: 10px;
+        letter-spacing: 0.3px;
+    }
+    
+    /* تحسين Detail Cards */
+    .detailed-cards-section {
+        gap: 10px;
+    }
+    
+    .detail-card {
+        padding: 10px;
+        width: 100%;
+    }
+    
+    .detail-header {
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        flex-direction: row; /* نخليهم جنب بعض */
+        text-align: left;
+    }
+    
+    .detail-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 16px;
+    }
+    
+    .detail-title {
+        font-size: 13px;
+    }
+    
+    .detail-item {
+        padding: 8px 5px;
+        flex-wrap: wrap; /* لو النص طويل ينزل تحت */
+    }
+    
+    .item-name {
+        font-size: 11px;
+        flex: 1;
+        min-width: 100px;
+    }
+    
+    .item-value {
+        font-size: 12px;
+    }
+    
+    .item-badge {
+        padding: 3px 8px;
+        font-size: 10px;
+        white-space: nowrap; /* ما ينكسر */
+    }
+    
+    /* تحسين Recent Transactions */
+    .recent-transactions {
+        padding: 10px;
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .transactions-table {
+        width: 100%;
+    }
+    
+    .transactions-table tr {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .transactions-table td {
+        padding: 5px 0;
+        font-size: 11px;
+        word-break: break-word; /* لو النص طويل ينكسر */
+    }
+    
+    /* باقي العناصر */
+    .add-department-form {
+        padding: 12px;
+        border-radius: 8px;
+        width: 100%;
+    }
+    
+    .form-header {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .form-group label {
+        font-size: 11px;
+        margin-bottom: 4px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 6px;
+        width: 100%;
+    }
+    
+    .btn-add, .btn-cancel {
+        padding: 9px 12px;
+        font-size: 11px;
+        border-radius: 6px;
+    }
+    
+    .dropdown-menu {
+        min-width: 120px;
+        right: 0;
+        left: auto;
+    }
+    
+    .dropdown-menu a {
+        font-size: 11px;
+        padding: 7px 8px;
+    }
+    
+    .toast {
+        min-width: 160px;
+        font-size: 12px;
+        padding: 10px;
+        bottom: 15px;
+        max-width: 90%;
+    }
+    
+    .search-input {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+    
+    .btn-show {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+    
+    .select-wrapper select {
+        padding: 6px 10px;
+        font-size: 11px;
+        min-width: 100%;
+    }
+}
+
+/* للشاشات بعرض 320px (iPhone SE الأول، Galaxy S5) */
+@media (max-width: 320px) {
+    body {
+        font-size: 12px;
+    }
+    
+    .sidebar {
+        width: 45px;
+    }
+    
+    .sidebar .nav-link {
+        padding: 10px 5px;
+    }
+    
+    .sidebar .nav-icon {
+        font-size: 18px;
+    }
+    
+    .header {
+        left: 45px;
+        padding: 0 6px;
+        height: 48px;
+    }
+    
+    .header-title {
+        font-size: 12px;
+    }
+    
+    .logout-btn {
+        padding: 3px 6px;
+        font-size: 10px;
+    }
+    
+    .main-content {
+        margin-left: 45px;
+        margin-top: 55px;
+        padding: 6px;
+        width: calc(100% - 45px);
+        overflow-x: hidden;
+    }
+    
+    /* تحسين الكروت */
+    .card {
+        padding: 8px;
+        border-radius: 6px;
+        width: 100%;
+    }
+    
+    .dashboard-cards {
+        gap: 8px;
+    }
+    
+    /* Canvas أصغر */
+    .card canvas {
+        max-height: 160px !important;
+    }
+    
+    #itemsStatusChart {
+        max-width: 150px !important;
+        max-height: 150px !important;
+    }
+    
+    #employeesChart {
+        height: 150px !important;
+    }
+    
+    .section-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    
+    /* كروت الإحصائيات */
+    .stats-cards-grid {
+        gap: 8px;
+    }
+    
+    .stat-card {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .stat-card .card-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        font-size: 18px;
+        border-radius: 8px;
+    }
+    
+    .stat-card .card-value {
+        font-size: 18px;
+    }
+    
+    .stat-card .card-title {
+        font-size: 9px;
+    }
+    
+    /* Detail Cards */
+    .detailed-cards-section {
+        gap: 8px;
+    }
+    
+    .detail-card {
+        padding: 8px;
+    }
+    
+    .detail-header {
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        gap: 8px;
+    }
+    
+    .detail-icon {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        font-size: 14px;
+        border-radius: 6px;
+    }
+    
+    .detail-title {
+        font-size: 12px;
+    }
+    
+    .detail-item {
+        padding: 6px 3px;
+    }
+    
+    .item-name {
+        font-size: 10px;
+        min-width: 80px;
+    }
+    
+    .item-value {
+        font-size: 11px;
+    }
+    
+    .item-badge {
+        padding: 2px 6px;
+        font-size: 9px;
+    }
+    
+    /* Recent Transactions */
+    .recent-transactions {
+        padding: 8px;
+    }
+    
+    .transactions-table tr {
+        padding: 6px;
+        margin-bottom: 8px;
+    }
+    
+    .transactions-table td {
+        padding: 4px 0;
+        font-size: 10px;
+        padding-left: 45%;
+    }
+    
+    .transactions-table td::before {
+        width: 40%;
+        font-size: 9px;
+    }
+    
+    /* الفورمات */
+    .add-department-form {
+        padding: 8px;
+        border-radius: 6px;
+    }
+    
+    .form-header {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 8px;
+    }
+    
+    .form-group label {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 7px 8px;
+        font-size: 11px;
+        border-radius: 5px;
+    }
+    
+    .btn-add, .btn-cancel {
+        padding: 7px 10px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+    
+    .dropdown-menu {
+        min-width: 100px;
+    }
+    
+    .dropdown-menu a {
+        font-size: 10px;
+        padding: 6px 7px;
+        gap: 5px;
+    }
+    
+    .dropdown-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 18px;
+    }
+    
+    .toast {
+        min-width: 140px;
+        font-size: 11px;
+        padding: 8px;
+        bottom: 12px;
+        border-radius: 6px;
+        max-width: 85%;
+    }
+    
+    .search-input {
+        padding: 6px 8px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+    
+    .btn-show {
+        padding: 6px 10px;
+        font-size: 10px;
+        border-radius: 5px;
+    }
+    
+    .select-wrapper select {
+        padding: 5px 8px;
+        font-size: 10px;
+        min-height: 28px;
+    }
+    
+    .error-message {
+        font-size: 9px;
+    }
+}
+
+/* للشاشات بعرض 280px وأقل (Galaxy Fold مطوي) */
+@media (max-width: 280px) {
+    body {
+        font-size: 11px;
+    }
+    
+    .sidebar {
+        width: 40px;
+    }
+    
+    .sidebar .nav-link {
+        padding: 8px 4px;
+    }
+    
+    .sidebar .nav-icon {
+        font-size: 16px;
+    }
+    
+    .header {
+        left: 40px;
+        padding: 0 5px;
+        height: 45px;
+    }
+    
+    .header-title {
+        font-size: 12px;
+    }
+    
+    .logout-btn {
+        padding: 2px 5px;
+        font-size: 9px;
+    }
+    
+    .main-content {
+        margin-left: 40px;
+        margin-top: 50px;
+        padding: 5px;
+    }
+    
+    .card {
+        padding: 8px;
+    }
+    
+    .section-title {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    
+    .add-department-form {
+        padding: 8px;
+    }
+    
+    .form-header {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .form-group {
+        margin-bottom: 8px;
+    }
+    
+    .form-group label {
+        font-size: 10px;
+    }
+    
+    .form-group input,
+    .form-group select {
+        padding: 6px 6px;
+        font-size: 10px;
+    }
+    
+    .btn-add, .btn-cancel {
+        padding: 7px 8px;
+        font-size: 10px;
+    }
+    
+    .recent-transactions {
+        padding: 8px;
+    }
+    
+    .transactions-table tr {
+        padding: 5px;
+        margin-bottom: 8px;
+    }
+    
+    .transactions-table td {
+        padding: 4px 0;
+        font-size: 9px;
+    }
+    
+    .stat-card {
+        padding: 8px;
+        gap: 8px;
+    }
+    
+    .stat-card .card-icon {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        font-size: 16px;
+    }
+    
+    .stat-card .card-value {
+        font-size: 20px;
+    }
+    
+    .stat-card .card-title {
+        font-size: 9px;
+    }
+    
+    .detail-card {
+        padding: 8px;
+    }
+    
+    .detail-icon {
+        width: 28px;
+        height: 28px;
+        min-width: 28px;
+        font-size: 14px;
+    }
+    
+    .detail-title {
+        font-size: 12px;
+    }
+    
+    .detail-item {
+        padding: 5px 0;
+    }
+    
+    .item-name, .item-value {
+        font-size: 10px;
+    }
+    
+    .item-badge {
+        padding: 2px 6px;
+        font-size: 9px;
+    }
+    
+    .dropdown-menu {
+        min-width: 100px;
+    }
+    
+    .dropdown-menu a {
+        font-size: 10px;
+        padding: 5px 6px;
+    }
+    
+    .toast {
+        min-width: 140px;
+        font-size: 11px;
+        padding: 7px;
+    }
+    
+    .search-input,
+    .btn-show {
+        padding: 6px 7px;
+        font-size: 10px;
+    }
+    
+    .select-wrapper select {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+}
+

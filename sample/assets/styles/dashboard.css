@@ -1,0 +1,213 @@
+
+.stats-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--card-color-1), var(--card-color-2));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover::before {
+    transform: scaleX(1);
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.stat-card.blue {
+    --card-color-1: #3498db;
+    --card-color-2: #2980b9;
+}
+
+.stat-card.green {
+    --card-color-1: #2ecc71;
+    --card-color-2: #27ae60;
+}
+
+.stat-card.orange {
+    --card-color-1: #e67e22;
+    --card-color-2: #d35400;
+}
+
+.stat-card.purple {
+    --card-color-1: #9b59b6;
+    --card-color-2: #8e44ad;
+}
+
+.stat-card .card-icon {
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--card-color-1), var(--card-color-2));
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.stat-card .card-info {
+    flex: 1;
+}
+
+.stat-card .card-title {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.stat-card .card-value {
+    font-size: 36px;
+    font-weight: 700;
+    color: #2c3e50;
+    line-height: 1;
+}
+
+/* Detailed Cards Section */
+.detailed-cards-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.detail-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.detail-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.detail-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #fff;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.detail-icon.green-gradient {
+    background: linear-gradient(135deg, #2ecc71, #27ae60);
+}
+
+.detail-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.detail-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background 0.2s;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item:hover {
+    background: #f8f9fa;
+    margin: 0 -14px;
+    padding: 14px 14px;
+    border-radius: 8px;
+}
+
+.item-name {
+    color: #495057;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.item-value {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.item-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.badge-active {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge-standby {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.badge-maintenance {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.badge-out-of-service {
+    background: #f8d7da;
+    color: #721c24;
+}

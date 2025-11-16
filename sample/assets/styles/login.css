@@ -1,0 +1,170 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #f8f9fc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Login box */
+.login-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 360px;
+}
+
+.login-box .site-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.login-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+.login-box p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* Input group */
+.input-group {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+}
+
+.input-group i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+/* Forgot link */
+.forgot {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.forgot a {
+  font-size: 13px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 12px;
+  background: #365a81;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-btn:hover {
+  background: #18334f;
+}
+
+
+
+/* خروج تدريجي */
+body.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+/* دخول تدريجي */
+body.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.input-wrapper i {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+/* Error message */
+.error-message {
+  display: block;
+  font-size: 12px;
+  color: #d93025;
+  margin-top: 6px;
+  text-align: left;
+  opacity: 0;
+  height: 0;
+  transition: opacity 0.3s ease, height 0.3s ease;
+}
+
+.error-message.show {
+  opacity: 1;
+  height: auto;
+}
+
+.input-error {
+  border-color: #d93025 !important;
+}

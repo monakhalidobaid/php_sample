@@ -1,0 +1,457 @@
+/* user.css */
+
+/* نستهدف فقط الفورم حق المستخدمين */
+.add-user-section .add-user-form {
+    background-color: #fdfdfd;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    width: 70%;
+    max-width: 700px;
+    margin-left: 0;     /* يلتصق باليسار */
+    margin-right: auto; /* يخلي الباقي فاضي يمين */}
+
+.add-user-section .form-header {
+    color: #374151;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.add-user-section .form-group input,
+.add-user-section .form-group select {
+    border-radius: 12px;
+    border: 2px solid #dcdcdc;
+    padding: 14px 18px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.add-user-section .form-group input:focus,
+.add-user-section .form-group select:focus {
+    border-color: #374151;;
+    box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+}
+
+.add-user-section .btn-add {
+    background-color: #5a6c7d; /* لون مطابق للتصميم */
+    color: white;
+}
+
+.add-user-section .btn-cancel {
+    background-color: #5a6c7d; /* لون مطابق للتصميم */
+    color: white;
+}
+
+.add-user-section .btn-add:hover {
+    background-color: #4a5a6b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 108, 125, 0.2);
+}
+
+.add-user-section .btn-cancel:hover {
+    background-color: #4a5a6b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 108, 125, 0.2);
+}
+
+
+/* ====================================
+   إضافات Responsive للمستخدمين
+   ==================================== */
+
+/* للأجهزة اللوحية (Tablets) */
+@media (max-width: 1024px) {
+    .add-user-section .add-user-form {
+        width: 85%;
+        padding: 35px;
+    }
+    
+    .add-user-section .form-header {
+        font-size: 19px;
+    }
+    
+    .add-user-section .form-group input,
+    .add-user-section .form-group select {
+        padding: 13px 16px;
+        font-size: 14px;
+    }
+}
+
+/* للشاشات الصغيرة (Mobile Landscape) */
+@media (max-width: 768px) {
+    .add-user-section .add-user-form {
+        width: 100%;
+        max-width: none;
+        padding: 25px;
+        border-radius: 12px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .add-user-section .form-header {
+        font-size: 18px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    .add-user-section .form-group {
+        margin-bottom: 18px;
+    }
+    
+    .add-user-section .form-group label {
+        font-size: 14px;
+        margin-bottom: 6px;
+    }
+    
+    .add-user-section .form-group input,
+    .add-user-section .form-group select {
+        padding: 12px 15px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+    
+    .add-user-section .form-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .add-user-section .btn-add,
+    .add-user-section .btn-cancel {
+        width: 100%;
+        padding: 12px 20px;
+    }
+}
+
+/* للشاشات الصغيرة جداً (Mobile Portrait) */
+@media (max-width: 480px) {
+    .add-user-section .add-user-form {
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    
+    .add-user-section .form-header {
+        font-size: 17px;
+        margin-bottom: 18px;
+    }
+    
+    .add-user-section .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .add-user-section .form-group label {
+        font-size: 13px;
+    }
+    
+    .add-user-section .form-group input,
+    .add-user-section .form-group select {
+        padding: 11px 14px;
+        font-size: 13px;
+        border-radius: 8px;
+    }
+    
+    .add-user-section .btn-add,
+    .add-user-section .btn-cancel {
+        padding: 11px 18px;
+        font-size: 14px;
+        border-radius: 8px;
+    }
+}
+
+/* للشاشات الكبيرة جداً */
+@media (min-width: 1920px) {
+    .add-user-section .add-user-form {
+        max-width: 800px;
+        padding: 45px;
+    }
+    
+    .add-user-section .form-header {
+        font-size: 22px;
+    }
+    
+    .add-user-section .form-group input,
+    .add-user-section .form-group select {
+        padding: 15px 20px;
+        font-size: 16px;
+    }
+}
+
+/* ====================================
+   تحسين المودال للجوال والشاشات الصغيرة
+   ==================================== */
+
+/* Modal Base Styles - تحسين */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+  padding: 20px; /* مساحة حول المودال */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto;
+  padding: 30px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: slideDown 0.3s ease-in-out;
+  position: relative;
+  max-height: 90vh; /* ما يتعدى 90% من ارتفاع الشاشة */
+  overflow-y: auto; /* سكرول لو المحتوى طويل */
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* زر الإغلاق X */
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 20px;
+  transition: 0.3s;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+}
+
+/* عنوان المودال */
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-size: 22px;
+  text-align: center;
+  clear: both; /* عشان ما يتداخل مع زر الإغلاق */
+  padding-top: 10px;
+}
+
+/* حقول الإدخال في المودال */
+.modal-content .form-group {
+  margin-bottom: 20px;
+}
+
+.modal-content .form-group label {
+  display: block;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.modal-content .form-group input,
+.modal-content .form-group select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.modal-content .form-group input:focus,
+.modal-content .form-group select:focus {
+  outline: none;
+  border-color: #5a6c7d;
+  box-shadow: 0 0 0 3px rgba(90, 108, 125, 0.1);
+}
+
+/* أزرار المودال */
+.modal-content .form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.modal-content .form-buttons button {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+/* ====================================
+   Responsive للمودال
+   ==================================== */
+
+/* للأجهزة اللوحية */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 85%;
+    padding: 25px;
+  }
+  
+  .modal-content h2 {
+    font-size: 20px;
+  }
+}
+
+/* للشاشات المتوسطة */
+@media (max-width: 768px) {
+  .modal {
+    padding: 15px;
+  }
+  
+  .modal-content {
+    width: 95%;
+    max-width: none;
+    padding: 20px;
+    margin: 10% auto;
+    max-height: 85vh;
+  }
+  
+  .modal-content h2 {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .close-btn {
+    font-size: 24px;
+  }
+  
+  .modal-content .form-group {
+    margin-bottom: 16px;
+  }
+  
+  .modal-content .form-group label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  
+  .modal-content .form-group input,
+  .modal-content .form-group select {
+    padding: 11px 14px;
+    font-size: 14px;
+  }
+  
+  .modal-content .form-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .modal-content .form-buttons button {
+    width: 100%;
+  }
+}
+
+/* للشاشات الصغيرة جداً (الجوال) */
+@media (max-width: 480px) {
+  .modal {
+    padding: 10px;
+  }
+  
+  .modal-content {
+    width: 100%;
+    padding: 20px 15px;
+    margin: 5% auto;
+    border-radius: 10px;
+    max-height: 90vh;
+  }
+  
+  .modal-content h2 {
+    font-size: 17px;
+    margin-bottom: 18px;
+  }
+  
+  .close-btn {
+    font-size: 22px;
+  }
+  
+  .modal-content .form-group {
+    margin-bottom: 14px;
+  }
+  
+  .modal-content .form-group label {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  
+  .modal-content .form-group input,
+  .modal-content .form-group select {
+    padding: 10px 12px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+  
+  .modal-content .form-buttons {
+    margin-top: 20px;
+    gap: 8px;
+  }
+  
+  .modal-content .form-buttons button {
+    padding: 11px 16px;
+    font-size: 13px;
+    border-radius: 6px;
+  }
+}
+
+/* للشاشات الصغيرة جداً (أقل من 380px) */
+@media (max-width: 380px) {
+  .modal-content {
+    padding: 15px 12px;
+  }
+  
+  .modal-content h2 {
+    font-size: 16px;
+  }
+  
+  .modal-content .form-group input,
+  .modal-content .form-group select {
+    padding: 9px 10px;
+    font-size: 13px;
+  }
+  
+  .modal-content .form-buttons button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
+
+/* تحسين Delete Modal */
+#deleteModal .modal-content {
+  max-width: 400px;
+  text-align: center;
+}
+
+#deleteModal .modal-content p {
+  margin: 20px 0 30px;
+  font-size: 16px;
+  color: #495057;
+}
+
+@media (max-width: 480px) {
+  #deleteModal .modal-content {
+    max-width: none;
+  }
+  
+  #deleteModal .modal-content p {
+    font-size: 14px;
+    margin: 15px 0 25px;
+  }
+}

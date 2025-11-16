@@ -1,0 +1,153 @@
+
+/*departments*/
+
+/* تعديل: قسم إضافة القسم الجديد */
+.add-department-section {
+    flex: 0 0 400px; /* عرض ثابت لقسم الإضافة */
+}
+
+
+.add-department-form {
+    background-color: #fff;
+    border-radius: 12px; /* زوايا أكثر نعومة */
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* ظل أكثر نعومة */
+    border: 1px solid #e9ecef;
+    width: 60%;           /* خلي العرض 60% من الشاشة */
+    max-width: 600px;     /* أقصى عرض 600px */
+}
+
+.form-header {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #5a6c7d; /* لون مطابق للأزرار */
+    box-shadow: 0 0 0 3px rgba(90, 108, 125, 0.1);
+}
+
+.form-group input::placeholder {
+    color: #adb5bd;
+    font-style: italic;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.btn-add, .btn-cancel {
+    flex: 1; /* يأخذان نفس العرض */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-add {
+    background-color: #5a6c7d; /* لون مطابق للتصميم */
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #4a5a6b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 108, 125, 0.2);
+}
+
+.btn-cancel {
+    background-color: #5a6c7d;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: #4a5a6b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(90, 108, 125, 0.2);
+}
+
+
+/* قسم عرض الأقسام */
+.departments-list-section {
+    margin-top: 40px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+     width: 200px; /*  */
+    min-width: 250px; /* أقل عرض ممكن */
+}
+
+.search-input:focus {
+    border-color: #5a6c7d;
+    box-shadow: 0 0 0 3px rgba(90,108,125,0.1);
+}
+
+.btn-show {
+    background-color: #5a6c7d;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-show:hover {
+    background-color: #4a5a6b;
+}
