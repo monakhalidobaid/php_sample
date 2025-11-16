@@ -3,10 +3,13 @@ This repository contains a sample PHP project demonstrating file organization an
 
 public/
 This folder contains HTML files
+
 style/
 CSS files
+
 js/
 JavaScript files
+
 api/
 This folder contains backend PHP files responsible for:
 Handling API requests
